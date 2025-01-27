@@ -1,34 +1,59 @@
-﻿#NoEnv
-#SingleInstance Force
-SetWorkingDir %A_ScriptDir%
+﻿#SingleInstance Force
+
+
+
+
 
 #j::
-Run, %USERPROFILE%\Downloads
+Run, "C:\Users\woobin\Downloads"
 return
+
+
+
 
 #v::
 Run, "C:\Program Files\Microsoft VS Code\Code.exe"
 return
 
+
+
+
 #t::
 Run, "C:\Program Files\Git\git-bash.exe" --cd="C:\Users\woobin"
+Sleep, 100
 WinWait, ahk_class mintty
-; Retrieve window dimensions
-WinGetPos, X, Y, Width, Height, ahk_class mintty
-; Calculate new position to center the window
-NewX := (A_ScreenWidth // 2) - (Width // 2)
-NewY := (A_ScreenHeight // 2) - (Height // 2)
-; Move the window to the new position
-WinMove, ahk_class mintty, , NewX, NewY
+
+; Calculate desired dimensions (half of screen size)
+DesiredWidth := A_ScreenWidth // 2
+DesiredHeight := A_ScreenHeight // 2
+
+; Calculate center position
+NewX := (A_ScreenWidth - DesiredWidth) // 2
+NewY := (A_ScreenHeight - DesiredHeight) // 2
+
+; Move and resize the window
+WinMove, ahk_class mintty,, NewX, NewY, DesiredWidth, DesiredHeight
 return
+
+
+
+
+
+
 
 #c::
 Run, "C:\Program Files\Google\Chrome\Application\chrome.exe"
 return
 
+
+
+
 #n::
 Run, "C:\Users\woobin\AppData\Local\Programs\Notion\Notion.exe"
 return
+
+
+
 
 #m::
 Run, notepad.exe
@@ -42,6 +67,9 @@ NewY := (A_ScreenHeight // 2) - (Height // 2)
 WinMove, ahk_class Notepad, , NewX, NewY
 return
 
+
+
+
 !+g::
     if WinExist("ChatGPT") {
         WinActivate
@@ -50,6 +78,8 @@ return
     }
 Return
 
+
+
 !+p::
     if WinExist("Perplexity") {
         WinActivate
@@ -57,6 +87,8 @@ Return
         Run, "C:\Program Files\Google\Chrome\Application\chrome_proxy.exe" --profile-directory=Default --app-id=kpmdbogdmbfckbgdfdffkleoleokbhod
     }
 return
+
+
 
 !+c::
     if WinExist("Claude") {
@@ -67,9 +99,15 @@ return
 return
 
 
+
+
 #k::
 Run, C:\Program Files\Google\Chrome\Application\chrome_proxy.exe --profile-directory="Profile 1" --app-id=kjbdgfilnfhdoflbpgamdcdgpehopbep
 return
+
+
+
+
 
 ; Mac 세팅 따라하기
 !c::Send ^c  ; Alt+C → Ctrl+C (복사)
@@ -99,4 +137,3 @@ return
 ; 앱 전환과 미션 컨트롤
 ; !Tab::Send #{Tab}  ; Alt + Tab으로 작업 보기(Mission Control)
 !`::Send !{Esc}    ; Alt + `로 같은 앱의 창 전환
-
