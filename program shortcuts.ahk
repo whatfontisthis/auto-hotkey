@@ -1,20 +1,15 @@
 ﻿#SingleInstance Force
 
 
-
-
-
 #j::
 Run, "C:\Users\woobin\Downloads"
 return
 
 
 
-
 #v::
 Run, "C:\Program Files\Microsoft VS Code\Code.exe"
 return
-
 
 
 
@@ -37,22 +32,19 @@ return
 
 
 
-
-
-
-
 #c::
 Run, "C:\Program Files\Google\Chrome\Application\chrome.exe"
 return
 
 
+#k::
+Run, C:\Program Files\Google\Chrome\Application\chrome_proxy.exe --profile-directory="Profile 1" --app-id=kjbdgfilnfhdoflbpgamdcdgpehopbep
+return
 
 
 #n::
 Run, "C:\Users\woobin\AppData\Local\Programs\Notion\Notion.exe"
 return
-
-
 
 
 #m::
@@ -70,11 +62,12 @@ return
 
 
 
+
 !+g::
-    if WinExist("ChatGPT") {
+    if WinExist("ahk_exe ChatGPT.exe") {
         WinActivate
-    } else {    
-        Run, C:\Program Files\WindowsApps\OpenAI.ChatGPT-Desktop_1.2025.16.0_x64__2p2nqsd0c76g0\app\ChatGPT.exe
+    } else {
+        Run, "C:\Users\woobin\Documents\AutoHotkey\ChatGPT.lnk"
     }
 Return
 
@@ -88,21 +81,12 @@ Return
     }
 return
 
-
-
 !+c::
     if WinExist("Claude") {
         WinActivate
     } else {
     Run, "C:\Program Files\Google\Chrome\Application\chrome_proxy.exe"  --profile-directory=Default --app-id=fmpnliohjhemenmnlpbfagaolkdacoja
     }
-return
-
-
-
-
-#k::
-Run, C:\Program Files\Google\Chrome\Application\chrome_proxy.exe --profile-directory="Profile 1" --app-id=kjbdgfilnfhdoflbpgamdcdgpehopbep
 return
 
 
